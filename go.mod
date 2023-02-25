@@ -1,4 +1,4 @@
-module github.com/jhunters/bigqueue
+module github.com/djkazic/bigqueue
 
 go 1.13
 
