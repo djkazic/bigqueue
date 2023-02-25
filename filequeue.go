@@ -239,7 +239,7 @@ func (q *FileQueue) Open(dir string, queueName string, options *Options) error {
 
 	path := dir + "/" + queueName
 
-	err := os.MkdirAll(path, os.ModeDir)
+	err := os.MkdirAll(path, 0777)
 	if err != nil {
 		return err
 	}
@@ -672,25 +672,25 @@ func (q *FileQueue) getIndexItemArray(index int64) ([]byte, error) {
 
 func (q *FileQueue) initDirs() error {
 	indexFilePath := q.path + "/" + IndexFileName
-	err := os.MkdirAll(indexFilePath, os.ModeDir)
+	err := os.MkdirAll(indexFilePath, 0777)
 	if err != nil {
 		return err
 	}
 
 	dataFilePath := q.path + "/" + DataFileName
-	err = os.MkdirAll(dataFilePath, os.ModeDir)
+	err = os.MkdirAll(dataFilePath, 0777)
 	if err != nil {
 		return err
 	}
 
 	metaFilePath := q.path + "/" + MetaFileName
-	err = os.MkdirAll(metaFilePath, os.ModeDir)
+	err = os.MkdirAll(metaFilePath, 0777)
 	if err != nil {
 		return err
 	}
 
 	frontFilePath := q.path + "/" + FrontFileName
-	err = os.MkdirAll(frontFilePath, os.ModeDir)
+	err = os.MkdirAll(frontFilePath, 0777)
 	if err != nil {
 		return err
 	}
@@ -731,7 +731,7 @@ func (q *FileQueue) Close() error {
 	return nil
 }
 
-//Gc Delete all used data files to free disk space.
+// Gc Delete all used data files to free disk space.
 //
 // BigQueue will persist enqueued data in disk files, these data files will remain even after
 // the data in them has been dequeued later, so your application is responsible to periodically call
